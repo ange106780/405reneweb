@@ -6,7 +6,7 @@ ini_set('display_errors',1);
 require_once 'config.php';
 
 header("Content-Type: application/json; charset=utf-8");
-
+///hola///
 $valido = array(
     'success' => false,
     'mensaje' => ''
