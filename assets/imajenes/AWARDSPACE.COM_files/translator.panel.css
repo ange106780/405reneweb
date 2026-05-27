@@ -1,0 +1,19 @@
+#translator-panel{position:fixed;bottom:0;right:10px;z-index:99;border:1px
+solid #c3c3c3;border-bottom:none;background:#e7e8e8}#translator-panel
+ul{padding:0;margin:0;border-top:1px solid #fff;font-size:11px}#translator-panel
+li{float:right}#translator-panel
+.btn{display:block;padding:5px
+10px;height:16px;line-height:16px;text-decoration:none;cursor:pointer;color:#333;border-left:1px solid #bbb}#translator-panel .btn:hover{background-color:#fdfefe}#translator-panel .btn p.ui-icon{float:left;margin-right:3px}#translator-panel
+.btn.flag{padding-right:0;width:16px;border-left:0;cursor:default;background-repeat:no-repeat;background-position:center right}#translator-panel .btn.flag:hover,
+#translator-panel .btn.intro:hover{background-color:transparent}#translator-panel li
+.btn.intro{border-left:0;cursor:default}#translator-panel .btn.intro
+em{color:#026d0c}#translator-panel
+.btn.info{border-left:0}#translator-panel
+.active{position:relative;z-index:98;height:17px;border-width:1px;border-style:solid;border-top:none;background-color:#fdfefe}#translator-panel .sub-panel{position:absolute;right:0;bottom:27px;display:none;width:230px;background:#fdfefe}#translator-panel .sub-panel
+ul{border-width:1px;border-style:solid;border-top-width:0}#translator-panel
+h5{margin:0;padding:5px
+10px;line-height:normal;font-size:inherit;cursor:pointer}#translator-panel h5
+p{float:right;font-size:15px;line-height:6px;font-weight:normal}#translator-panel .sub-panel
+ul{padding-bottom:2px;background:#fdfefe}#translator-panel .sub-panel
+li{float:none;background:#fdfefe;font-size:11px}#translator-panel .sub-panel
+.btn{border-left:0}

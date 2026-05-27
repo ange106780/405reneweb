@@ -1,0 +1,8 @@
+#section-tab-main{padding:4% 3%}#account-form .ui-tabs-nav{float:left;padding: .2em .1em .2em .2em}#account-form .ui-tabs-nav
+li{clear:left;width:100%;border-bottom:1px solid transparent !important;border-right-width:0 !important;margin:0
+-1px .2em 0}#account-form .ui-tabs-nav li
+a{display:block}#account-form .ui-tabs-nav li.ui-tabs-selected{padding-bottom:0;padding-right: .1em;border-right-width:1px}#account-form .ui-tabs-panel{position:relative;float:left;padding:2em;border-width:1px;min-height:85px}#account-form
+h2{font-size:18px}#account-form .ui-widget-content{width:70%}#account-form #module-closure input, #account-form #other-accounts input, #account-form #other-passwords
+input{width:auto}#account-form #other-accounts, #account-form #other-passwords{padding-left:10px}#account-form input, #account-form
+textarea{width:250px}#account-form
+select{width:258px}#account-form .ui-cp-form-buttons{width:auto}.tfa-secret-details-autohide{display:none}.tfa-message .ui-icon, .tfa-device-status .ui-icon{display:inline-block !important}.inlined-long-code{overflow-wrap:break-word;word-break:break-all;font-family:monospace}

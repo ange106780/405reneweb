@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CRUD CONTACTOS</title>
+
+    <link rel="shortcut icon" href="assets/imajenes/cecy.png" type="image/x-icon">
+
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+
+</head>
+
+<body onload="cargarContactos();checarSesion();">
+
+    <nav class="navbar navbar-dark bg-dark">
+
+        <div class="container-fluid">
+
+            <a class="navbar-brand" href="#">
+
+                <img src="assets/imajenes/cecy.png"
+                     alt=""
+                     width="30"
+                     height="24"
+                     class="d-inline-block align-text-top">
+
+                CRUD CONTACTOS
+
+            </a>
+
+            <div class="d-flex" role="search">
+
+                <div class="dropdown">
+
+                    <button id="usuario"
+                            class="btn btn-dark dropdown-toggle"
+                            type="button"
+                            data-bs-toggle="dropdown"
+                            aria-expanded="false">
+
+                        Usuario
+
+                    </button>
+
+                    <ul class="dropdown-menu">
+                        
+                        <li>
+
+                            <a class="dropdown-item"
+                               href="#"
+                               onclick="cerrarSesion()">
+
+                                <i class="bi bi-box-arrow-right"></i>
+
+                                CERRAR
+
+                            </a>
+
+                        </li>
+
+                    </ul>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </nav>
+
+    <div class="card text-center m-4">
+
+        <div class="card-header">
+
+            CRUD CONTACTOS
+
+        </div>
+
+        <div class="card-body">
+
+            <!-- BOTONES -->
+            <div class="d-flex justify-content-end gap-2 mb-3">
+
+                <button class="btn btn-danger mb-3"
+                        data-bs-toggle="modal"
+                        data-bs-target="#agregarModal">
+
+                    <i class="bi bi-person-plus p-1"></i>
+
+                    Agregar Contacto
+
+                </button>
+
+                <button class="btn btn-primary mb-3"
+                        onclick="window.location.href='citas.html'">
+
+                    <i class="bi bi-folder-plus p-1"></i>
+
+                    Citas
+
+                </button>
+
+            </div>
+
+            <table class="table table-hover">
+
+                <thead class="table-dark">
+
+                    <tr>
+
+                        <td>Nombre</td>
+                        <td>Apellido Paterno</td>
+                        <td>Apellido Materno</td>
+                        <td>Telefono</td>
+                        <td>Correo</td>
+                        <td>Editar</td>
+                        <td>Eliminar</td>
+
+                    </tr>
+
+                </thead>
+
+                <tbody id="registros">
+                    
+                </tbody>
+
+            </table>
+
+        </div>
+
+        <div class="card-footer text-muted">
+
+            Desing by Armando Charbel 2026
+
+        </div>
+
+    </div>
+
+    <div class="modal fade"
+         id="agregarModal"
+         tabindex="-1"
+         aria-hidden="true">
+
+        <div class="modal-dialog modal-dialog-centered">
+
+            <div class="modal-content text-start">
+
+                <div class="modal-header">
+
+                    <h5 class="modal-title">
+
+                        AGREGAR CONTACTO
+
+                    </h5>
+
+                    <button type="button"
+                            class="btn-close"
+                            data-bs-dismiss="modal">
+
+                    </button>
+
+                </div>
+
+                <div class="modal-body">
+
+                    <form id="formAgregar">
+
+                        <input type="hidden"
+                               id="contactoId"
+                               name="contactoId">
+
+                        <div class="mb-3">
+
+                            <label for="nombre" class="form-label">
+
+                                Nombre(s)
+
+                            </label>
+
+                            <input type="text"
+                                   class="form-control"
+                                   id="nombre"
+                                   placeholder="Ej. Charbel"
+                                   required>
+
+                        </div>
+
+                        <div class="mb-3">
+
+                            <label for="ap" class="form-label">
+
+                                Apellido Paterno
+
+                            </label>
+
+                            <input type="text"
+                                   class="form-control"
+                                   id="ap"
+                                   placeholder="Ej. Bautista"
+                                   required>
+
+                        </div>
+
+                        <div class="mb-3">
+
+                            <label for="am" class="form-label">
+
+                                Apellido Materno
+
+                            </label>
+
+                            <input type="text"
+                                   class="form-control"
+                                   id="am"
+                                   placeholder="Ej. Ramirez"
+                                   required>
+
+                        </div>
+
+                        <div class="mb-3">
+
+                            <label for="telefono" class="form-label">
+
+                                Teléfono
+
+                            </label>
+
+                            <input type="tel"
+                                   class="form-control"
+                                   id="telefono"
+                                   placeholder="Ej. 5576285110"
+                                   required>
+
+                        </div>
+
+                        <div class="mb-3">
+
+                            <label for="correo" class="form-label">
+
+                                Correo Electrónico
+
+                            </label>
+
+                            <input type="email"
+                                   class="form-control"
+                                   id="correo"
+                                   placeholder="ejemplo@correo.com"
+                                   required>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+                <div class="modal-footer">
+
+                    <button type="button"
+                            class="btn btn-danger"
+                            data-bs-dismiss="modal">
+
+                        <i class="bi bi-x-circle p-1"></i>
+
+                        Cancelar
+
+                    </button>
+
+                    <button type="button"
+                            class="btn btn-success"
+                            onclick="agregarContacto()">
+
+                        <i class="bi bi-box-arrow-down p-1"></i>
+
+                        Guardar
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="modal fade"
+         id="editarModal"
+         tabindex="-1"
+         aria-hidden="true">
+
+        <div class="modal-dialog modal-dialog-centered">
+
+            <div class="modal-content text-start">
+
+                <div class="modal-header">
+
+                    <h5 class="modal-title">
+
+                        EDITAR CONTACTO
+
+                    </h5>
+
+                    <button type="button"
+                            class="btn-close"
+                            data-bs-dismiss="modal">
+
+                    </button>
+
+                </div>
+
+                <div class="modal-body">
+
+                    <form id="formEditar">
+
+                        <input type="hidden"
+                         id="contactoIdEditar"
+                         name="contactoId">
+
+                        <div class="mb-3">
+
+                            <label class="form-label">
+
+                                Nombre(s)
+
+                            </label>
+
+                            <input type="text"
+                                   class="form-control"
+                                   id="enombre"
+                                   placeholder="Ej. Charbel"
+                                   required>
+
+                        </div>
+
+                        <div class="mb-3">
+
+                            <label class="form-label">
+
+                                Apellido Paterno
+
+                            </label>
+
+                            <input type="text"
+                                   class="form-control"
+                                   id="eap"
+                                   placeholder="Ej. Bautista"
+                                   required>
+
+                        </div>
+
+                        <div class="mb-3">
+
+                            <label class="form-label">
+
+                                Apellido Materno
+
+                            </label>
+
+                            <input type="text"
+                                   class="form-control"
+                                   id="eam"
+                                   placeholder="Ej. Ramirez"
+                                   required>
+
+                        </div>
+
+                        <div class="mb-3">
+
+                            <label class="form-label">
+
+                                Teléfono
+
+                            </label>
+
+                            <input type="tel"
+                                   class="form-control"
+                                   id="etelefono"
+                                   placeholder="Ej. 5576285110"
+                                   required>
+
+                        </div>
+
+                        <div class="mb-3">
+
+                            <label class="form-label">
+
+                                Correo Electrónico
+
+                            </label>
+
+                            <input type="email"
+                                   class="form-control"
+                                   id="ecorreo"
+                                   placeholder="ejemplo@correo.com"
+                                   required>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+                <div class="modal-footer">
+
+                    <input type="hidden" id="contactoId">
+
+                    <button type="button"
+                            class="btn btn-danger"
+                            data-bs-dismiss="modal">
+
+                        Cancelar
+
+                    </button>
+
+                    <button type="button"
+                            class="btn btn-success"
+                            onclick="editarContacto()">
+
+                        Guardar
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <script src="assets/js/appCRUD.js"></script>
+
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+
+    <script src="assets/js/sweetalert2.all.min.js"></script>
+
+</body>
+</html>

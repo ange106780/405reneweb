@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LOGIN</title>
+
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+</head>
+
+<body onload="checarSesion();"
+style="background: linear-gradient(135deg,rgb(33,132,145),rgb(18,80,90));">
+
+<form id="formLogin">
+
+<div class="container mt-5 w-50 m-auto text-center p-5 rounded-4 shadow-lg"
+style="background-color: rgba(0,0,0,0.75);">
+
+    <h1 class="fw-bold mb-4"
+    style="color: rgb(120,220,255);">
+
+        LOGIN
+
+    </h1>
+
+    <div class="mb-3">
+
+        <label for="username"
+        class="form-label text-white fw-bold">
+
+            Username
+
+        </label>
+
+        <input type="text"
+        class="form-control rounded-pill p-2"
+        id="username"
+        name="username"
+        required
+        placeholder="Ingresa usuario">
+
+    </div>
+
+    <div class="mb-3">
+
+        <label for="password"
+        class="form-label text-white fw-bold">
+
+            Password
+
+        </label>
+
+        <input type="password"
+        class="form-control rounded-pill p-2"
+        id="password"
+        name="password"
+        required
+        placeholder="Ingresa contraseña">
+
+    </div>
+
+    <button type="button"
+    class="btn w-100 rounded-pill fw-bold mt-3"
+    onclick="loginUsuario()"
+    style="background-color: rgb(33,132,145); color:white;">
+
+        Iniciar sesión
+
+    </button>
+
+    <br>
+
+    <a href="registro.html"
+    class="btn btn-link mt-2"
+    style="color: rgb(120,220,255); text-decoration:none;">
+
+        Registrarse
+
+    </a>
+
+</div>
+
+</form>
+
+<script src="assets/js/funciones.js"></script>
+
+<script src="assets/js/bootstrap.bundle.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script src="assets/js/appLogin.js"></script>
+
+</body>
+</html>

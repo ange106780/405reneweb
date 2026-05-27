@@ -1,0 +1,88 @@
+
+var UriHashParser = {
+
+    parseHash: function (hash) {
+        if (hash === undefined)
+            hash = window.location.hash;
+
+        var result = {
+            hash: hash,
+            baseHash: '',
+            identifier: '',
+
+            parts: hash.substr(1).split(/[&;]/),
+            args: [],
+            words: [],
+
+            hasParams: false,
+            params: {},
+            paramsMulti: {},
+        };
+
+        for (var i in result.parts) {
+            var part = result.parts[i];
+            var paramMatch = part.match(/([^=]+)=(.*)/);
+            if (paramMatch) {
+                var key = decodeURIComponent(paramMatch[1].replace('+', ' '));
+                var value = decodeURIComponent(paramMatch[2].replace('+', ' '));
+
+                if (!(key in result.paramsMulti))
+                    result.paramsMulti[key] = [];
+
+                result.hasParams = true;
+                result.params[key] = value;
+                result.paramsMulti[key].push(value);
+
+            }
+            else {
+                var word = decodeURIComponent(part.replace('+', ' '));
+                result.words.push(word);
+                if (!result.hasParams)
+                    result.args.push(word);
+            }
+
+            if (result.args.length) {
+                result.identifier = result.args[0];
+                result.baseHash = '#' + result.args[0];
+            }
+        }
+
+        return result;
+
+    },
+    encodeParams: function (params) {
+        if (params === undefined)
+            params = UriHashParser.current.params;
+        result = '';
+        for (var key in params) {
+            if (result)
+                result = result + ';';
+            result = result + decodeURI(encodeURIComponent(key)) + '=' + decodeURI(encodeURIComponent(params[key]));
+        }
+        return result;
+    },
+    extendHashParams: function(hash, result) {
+        if (result === undefined)
+            result = UriHashParser.current;
+        if (Object.keys(result.params).length == 0)
+            return hash;
+        return hash + ';' + UriHashParser.encodeParams(result.params);
+    },
+    keepParamsIfHashSame: function(hash, result) {
+        if (result === undefined)
+            result = UriHashParser.current;
+        if (hash.replace(/^#/, '') != result.baseHash.replace(/^#/, ''))
+            return hash;
+        return UriHashParser.extendHashParams(hash, result);
+    }
+};
+
+UriHashParser.initial = UriHashParser.parseHash();
+UriHashParser.previous = UriHashParser.parseHash('');
+UriHashParser.current = UriHashParser.initial;
+
+window.addEventListener('hashchange', event => {
+    UriHashParser.previous = UriHashParser.current;
+    UriHashParser.current = UriHashParser.parseHash();
+});
+

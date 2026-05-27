@@ -1,0 +1,6 @@
+ul.file-tree{font-size:12px;font-weight:bold;line-height:18px;padding:0px;margin:0px;display:none}ul.file-tree
+li{list-style:none;padding:0
+0 0 8px;margin-top:5px;white-space:nowrap}ul.file-tree
+a{color:#333;text-decoration:none;display:block;padding:0px
+2px}ul.file-tree a:hover{background-color:#666;color:#9b9b9b}ul.file-tree li .tree-odd{background-color:#fff}ul.file-tree li .tree-even{background-color:#f4f4f4}.file-tree .folder-image{display:inline-block;width:13px;height:13px;background-color:transparent;background-repeat:no-repeat;float:left;margin:3px
+3px 0 0}.file-tree li.collapsed .folder-image.collapsed{background:url(./images/folder_tree.png)}.file-tree li.expanded .folder-image.expanded{background:url(./images/folder_tree_open.png)}.file-tree li.collapsed.directory-backup .folder-image.collapsed{background:url(./images/folder-backup_tree.png)}.file-tree li.expanded.directory-backup .folder-image.expanded{background:url(./images/folder-backup_tree_open.png)}.file-tree li.wait .folder-image{background:url(./images/spinner.gif)}
