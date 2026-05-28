@@ -1,117 +1,54 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible"
-          content="IE=edge">
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
-
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CRUD CITAS</title>
-
-    <link rel="shortcut icon"
-          href="assets/imajenes/cecy.png"
-          type="image/x-icon">
-
-    <link rel="stylesheet"
-          href="assets/css/bootstrap.min.css">
-
+    <link rel="shortcut icon" href="assets/imajenes/cecy.png" type="image/x-icon">
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
 </head>
 
-<body>
+<body onload="checarSesion(); cargarCitas();">
 
     <nav class="navbar navbar-dark bg-dark">
-
         <div class="container-fluid">
-
-            <a class="navbar-brand"
-               href="#">
-
-                <img src="assets/imajenes/cecy.png"
-                     alt=""
-                     width="30"
-                     height="24"
-                     class="d-inline-block align-text-top">
-
+            <a class="navbar-brand" href="#">
+                <img src="assets/imajenes/cecy.png" alt="" width="30" height="24" class="d-inline-block align-text-top">
                 CRUD CITAS
-
             </a>
-
             <div class="d-flex">
-
                 <div class="dropdown">
-
-                    <button id="usuario"
-                            class="btn btn-dark dropdown-toggle"
-                            type="button"
-                            data-bs-toggle="dropdown">
-
+                    <button id="usuario" class="btn btn-dark dropdown-toggle" type="button" data-bs-toggle="dropdown">
                         Usuario
-
                     </button>
-
                     <ul class="dropdown-menu">
-
                         <li>
-
-                            <a class="dropdown-item"
-                               href="#">
-
-                                CERRAR
-
-                            </a>
-
+                            <a class="dropdown-item" href="#" onclick="cerrarSesion()">CERRAR</a>
                         </li>
-
                     </ul>
-
                 </div>
-
             </div>
-
         </div>
-
     </nav>
 
     <div class="card text-center m-4">
-
         <div class="card-header">
-
             CRUD CITAS
-
         </div>
-
         <div class="card-body">
-
             <div class="d-flex justify-content-end gap-2 mb-3">
-
-                <button class="btn btn-danger mb-3"
-                        data-bs-toggle="modal"
-                        data-bs-target="#agregarModal">
-
-                    <i class="bi bi-person-plus p-1"></i>
-
+                <button class="btn btn-danger mb-3" data-bs-toggle="modal" data-bs-target="#agregarModal">
                     Agregar Cita
-
                 </button>
-
-                <button class="btn btn-primary mb-3"
-                        onclick="window.location.href='index.html'">
-
-                    <i class="bi bi-folder-plus p-1"></i>
-
+                <button class="btn btn-primary mb-3" onclick="window.location.href='inicio.html'">
                     Contactos
-
                 </button>
-
             </div>
 
             <table class="table table-hover">
-
                 <thead class="table-dark">
-
                     <tr>
-
                         <td>Titulo</td>
                         <td>Descripcion</td>
                         <td>Fecha</td>
@@ -120,385 +57,120 @@
                         <td>Estado</td>
                         <td>Editar</td>
                         <td>Eliminar</td>
-
                     </tr>
-
                 </thead>
-
                 <tbody id="registros">
-
-                    <tr>
-
-                        <td>Consulta General</td>
-                        <td>Revision medica anual</td>
-                        <td>2026-05-27</td>
-                        <td>10:30</td>
-                        <td>Consultorio A</td>
-                        <td>Pendiente</td>
-
-                        <td>
-
-                            <button class="btn btn-success"
-                                    data-bs-toggle="modal"
-                                    data-bs-target="#editarModal">
-
-                                Editar
-
-                            </button>
-
-                        </td>
-
-                        <td>
-
-                            <button class="btn btn-danger">
-
-                                Eliminar
-
-                            </button>
-
-                        </td>
-
-                    </tr>
-
-                    <tr>
-
-                        <td>Vacunacion</td>
-                        <td>Aplicacion de vacuna</td>
-                        <td>2026-05-28</td>
-                        <td>12:00</td>
-                        <td>Modulo B</td>
-                        <td>Completada</td>
-
-                        <td>
-
-                            <button class="btn btn-success"
-                                    data-bs-toggle="modal"
-                                    data-bs-target="#editarModal">
-
-                                Editar
-
-                            </button>
-
-                        </td>
-
-                        <td>
-
-                            <button class="btn btn-danger">
-
-                                Eliminar
-
-                            </button>
-
-                        </td>
-
-                    </tr>
-
-                    <tr>
-
-                        <td>Consulta Dental</td>
-                        <td>Limpieza y revision</td>
-                        <td>2026-05-30</td>
-                        <td>09:00</td>
-                        <td>Consultorio Dental</td>
-                        <td>Cancelada</td>
-
-                        <td>
-
-                            <button class="btn btn-success"
-                                    data-bs-toggle="modal"
-                                    data-bs-target="#editarModal">
-
-                                Editar
-
-                            </button>
-
-                        </td>
-
-                        <td>
-
-                            <button class="btn btn-danger">
-
-                                Eliminar
-
-                            </button>
-
-                        </td>
-
-                    </tr>
-
                 </tbody>
-
             </table>
-
         </div>
-
         <div class="card-footer text-muted">
-
             Desing by Armando Charbel 2026
-
         </div>
-
     </div>
 
-    <!-- AGREGAR -->
-
-    <div class="modal fade"
-         id="agregarModal"
-         tabindex="-1">
-
+    <div class="modal fade" id="agregarModal" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered">
-
             <div class="modal-content text-start">
-
                 <div class="modal-header">
-
-                    <h5 class="modal-title">
-
-                        AGREGAR CITA
-
-                    </h5>
-
-                    <button class="btn-close"
-                            data-bs-dismiss="modal">
-
-                    </button>
-
+                    <h5 class="modal-title">AGREGAR CITA</h5>
+                    <button class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
-
                 <div class="modal-body">
-
-                    <form>
-
+                    <form id="formAgregarCita">
                         <div class="mb-3">
-
-                            <label class="form-label">
-
-                                Titulo
-
-                            </label>
-
-                            <input type="text"
-                                   class="form-control"
-                                   id="titulo">
-
+                            <label class="form-label">Contacto ID</label>
+                            <input type="number" class="form-control" id="contactoId">
                         </div>
-
                         <div class="mb-3">
-
-                            <label class="form-label">
-
-                                Descripcion
-
-                            </label>
-
-                            <textarea class="form-control"
-                                      id="descripcion"></textarea>
-
+                            <label class="form-label">Titulo</label>
+                            <input type="text" class="form-control" id="titulo">
                         </div>
-
                         <div class="mb-3">
-
-                            <label class="form-label">
-
-                                Fecha
-
-                            </label>
-
-                            <input type="date"
-                                   class="form-control"
-                                   id="fecha">
-
+                            <label class="form-label">Descripcion</label>
+                            <textarea class="form-control" id="descripcion"></textarea>
                         </div>
-
                         <div class="mb-3">
-
-                            <label class="form-label">
-
-                                Hora
-
-                            </label>
-
-                            <input type="time"
-                                   class="form-control"
-                                   id="hora">
-
+                            <label class="form-label">Fecha</label>
+                            <input type="date" class="form-control" id="fecha">
                         </div>
-
                         <div class="mb-3">
-
-                            <label class="form-label">
-
-                                Lugar
-
-                            </label>
-
-                            <input type="text"
-                                   class="form-control"
-                                   id="lugar">
-
+                            <label class="form-label">Hora</label>
+                            <input type="time" class="form-control" id="hora">
                         </div>
-
                         <div class="mb-3">
-
-                            <label class="form-label">
-
-                                Estado
-
-                            </label>
-
-                            <select class="form-control"
-                                    id="estado">
-
-                                <option>pendiente</option>
-                                <option>completada</option>
-                                <option>cancelada</option>
-
+                            <label class="form-label">Lugar</label>
+                            <input type="text" class="form-control" id="lugar">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Estado</label>
+                            <select class="form-control" id="estado">
+                                <option value="pendiente">pendiente</option>
+                                <option value="completada">completada</option>
+                                <option value="cancelada">cancelada</option>
                             </select>
-
                         </div>
-
                     </form>
-
                 </div>
-
                 <div class="modal-footer">
-
-                    <button class="btn btn-danger"
-                            data-bs-dismiss="modal">
-
-                        Cancelar
-
-                    </button>
-
-                    <button class="btn btn-success">
-
-                        Guardar
-
-                    </button>
-
+                    <button class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                    <button class="btn btn-success" onclick="agregarCita()">Guardar</button>
                 </div>
-
             </div>
-
         </div>
-
     </div>
 
-    <!-- EDITAR -->
-
-    <div class="modal fade"
-         id="editarModal"
-         tabindex="-1">
-
+    <div class="modal fade" id="editarModal" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered">
-
             <div class="modal-content text-start">
-
                 <div class="modal-header">
-
-                    <h5 class="modal-title">
-
-                        EDITAR CITA
-
-                    </h5>
-
-                    <button class="btn-close"
-                            data-bs-dismiss="modal">
-
-                    </button>
-
+                    <h5 class="modal-title">EDITAR CITA</h5>
+                    <button class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
-
                 <div class="modal-body">
-
-                    <form>
+                    <form id="formEditarCita">
+                        <input type="hidden" id="ecitaId">
 
                         <div class="mb-3">
-
                             <label>Titulo</label>
-
-                            <input type="text"
-                                   class="form-control">
-
+                            <input type="text" class="form-control" id="etitulo">
                         </div>
-
                         <div class="mb-3">
-
                             <label>Descripcion</label>
-
-                            <textarea class="form-control"></textarea>
-
+                            <textarea class="form-control" id="edescripcion"></textarea>
                         </div>
-
                         <div class="mb-3">
-
                             <label>Fecha</label>
-
-                            <input type="date"
-                                   class="form-control">
-
+                            <input type="date" class="form-control" id="efecha">
                         </div>
-
                         <div class="mb-3">
-
                             <label>Hora</label>
-
-                            <input type="time"
-                                   class="form-control">
-
+                            <input type="time" class="form-control" id="ehora">
                         </div>
-
                         <div class="mb-3">
-
                             <label>Lugar</label>
-
-                            <input type="text"
-                                   class="form-control">
-
+                            <input type="text" class="form-control" id="elugar">
                         </div>
-
                         <div class="mb-3">
-
                             <label>Estado</label>
-
-                            <select class="form-control">
-
-                                <option>pendiente</option>
-                                <option>completada</option>
-                                <option>cancelada</option>
-
+                            <select class="form-control" id="eestado">
+                                <option value="pendiente">pendiente</option>
+                                <option value="completada">completada</option>
+                                <option value="cancelada">cancelada</option>
                             </select>
-
                         </div>
-
                     </form>
-
                 </div>
-
                 <div class="modal-footer">
-
-                    <button class="btn btn-danger"
-                            data-bs-dismiss="modal">
-
-                        Cancelar
-
-                    </button>
-
-                    <button class="btn btn-success">
-
-                        Guardar
-
-                    </button>
-
+                    <button class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                    <button class="btn btn-success" onclick="editarCita()">Guardar</button>
                 </div>
-
             </div>
-
         </div>
-
     </div>
 
     <script src="assets/js/bootstrap.bundle.min.js"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="assets/js/appSistema.js"></script>
+    <script src="assets/js/funciones.js"></script>
 </body>
 </html>

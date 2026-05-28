@@ -1,0 +1,477 @@
+```html id="z7x9pk"
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CRUD PRODUCTOS</title>
+
+    <link rel="shortcut icon"
+          href="assets/imajenes/cecy.png"
+          type="image/x-icon">
+
+    <link rel="stylesheet"
+          href="assets/css/bootstrap.min.css">
+
+</head>
+
+<body onload="cargarProductos();checarSesion();">
+
+    <!-- NAVBAR -->
+
+    <nav class="navbar navbar-dark bg-dark">
+
+        <div class="container-fluid">
+
+            <a class="navbar-brand" href="#">
+
+                <img src="assets/imajenes/cecy.png"
+                     alt=""
+                     width="30"
+                     height="24"
+                     class="d-inline-block align-text-top">
+
+                CRUD PRODUCTOS
+
+            </a>
+
+            <div class="d-flex" role="search">
+
+                <div class="dropdown">
+
+                    <button id="usuario"
+                            class="btn btn-dark dropdown-toggle"
+                            type="button"
+                            data-bs-toggle="dropdown">
+
+                        Usuario
+
+                    </button>
+
+                    <ul class="dropdown-menu">
+
+                        <li>
+
+                            <a class="dropdown-item"
+                               href="#"
+                               onclick="cerrarSesion()">
+
+                                CERRAR
+
+                            </a>
+
+                        </li>
+
+                    </ul>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </nav>
+
+    <!-- CARD -->
+
+    <div class="card text-center m-4">
+
+        <div class="card-header">
+
+            CRUD PRODUCTOS
+
+        </div>
+
+        <div class="card-body">
+
+            <!-- BOTONES -->
+
+            <div class="d-flex justify-content-end gap-2 mb-3">
+
+                <!-- AGREGAR PRODUCTO -->
+
+                <button class="btn btn-success"
+                        data-bs-toggle="modal"
+                        data-bs-target="#agregarModal">
+
+                    Agregar Producto
+
+                </button>
+
+                <!-- REGRESAR A CONTACTOS -->
+
+                <button class="btn btn-primary"
+                        onclick="window.location.href='contactos.html'">
+
+                    Contactos
+
+                </button>
+
+            </div>
+
+            <!-- TABLA -->
+
+            <table class="table table-hover">
+
+                <thead class="table-dark">
+
+                    <tr>
+
+                        <td>Nombre</td>
+                        <td>Descripción</td>
+                        <td>Precio</td>
+                        <td>Stock</td>
+                        <td>Activo</td>
+                        <td>Editar</td>
+                        <td>Eliminar</td>
+
+                    </tr>
+
+                </thead>
+
+                <tbody id="registros">
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+        <div class="card-footer text-muted">
+
+            Desing by Armando Charbel 2026
+
+        </div>
+
+    </div>
+
+    <!-- MODAL AGREGAR -->
+
+    <div class="modal fade"
+         id="agregarModal"
+         tabindex="-1"
+         aria-hidden="true">
+
+        <div class="modal-dialog modal-dialog-centered">
+
+            <div class="modal-content text-start">
+
+                <div class="modal-header">
+
+                    <h5 class="modal-title">
+
+                        AGREGAR PRODUCTO
+
+                    </h5>
+
+                    <button type="button"
+                            class="btn-close"
+                            data-bs-dismiss="modal">
+
+                    </button>
+
+                </div>
+
+                <div class="modal-body">
+
+                    <form id="formAgregar">
+
+                        <input type="hidden"
+                               id="productoId">
+
+                        <!-- NOMBRE -->
+
+                        <div class="mb-3">
+
+                            <label class="form-label">
+
+                                Nombre Producto
+
+                            </label>
+
+                            <input type="text"
+                                   class="form-control"
+                                   id="nombre"
+                                   placeholder="Ej. Laptop"
+                                   required>
+
+                        </div>
+
+                        <!-- DESCRIPCION -->
+
+                        <div class="mb-3">
+
+                            <label class="form-label">
+
+                                Descripción
+
+                            </label>
+
+                            <textarea class="form-control"
+                                      id="descripcion"
+                                      required>
+                            </textarea>
+
+                        </div>
+
+                        <!-- PRECIO -->
+
+                        <div class="mb-3">
+
+                            <label class="form-label">
+
+                                Precio
+
+                            </label>
+
+                            <input type="number"
+                                   step="0.01"
+                                   class="form-control"
+                                   id="precio"
+                                   placeholder="Ej. 1500"
+                                   required>
+
+                        </div>
+
+                        <!-- STOCK -->
+
+                        <div class="mb-3">
+
+                            <label class="form-label">
+
+                                Stock
+
+                            </label>
+
+                            <input type="number"
+                                   class="form-control"
+                                   id="stock"
+                                   placeholder="Ej. 20"
+                                   required>
+
+                        </div>
+
+                        <!-- ACTIVO -->
+
+                        <div class="mb-3">
+
+                            <label class="form-label">
+
+                                Estado
+
+                            </label>
+
+                            <select class="form-control"
+                                    id="activo">
+
+                                <option value="true">
+                                    Activo
+                                </option>
+
+                                <option value="false">
+                                    Inactivo
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+                <div class="modal-footer">
+
+                    <button type="button"
+                            class="btn btn-danger"
+                            data-bs-dismiss="modal">
+
+                        Cancelar
+
+                    </button>
+
+                    <button type="button"
+                            class="btn btn-success"
+                            onclick="agregarProducto()">
+
+                        Guardar
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- MODAL EDITAR -->
+
+    <div class="modal fade"
+         id="editarModal"
+         tabindex="-1"
+         aria-hidden="true">
+
+        <div class="modal-dialog modal-dialog-centered">
+
+            <div class="modal-content text-start">
+
+                <div class="modal-header">
+
+                    <h5 class="modal-title">
+
+                        EDITAR PRODUCTO
+
+                    </h5>
+
+                    <button type="button"
+                            class="btn-close"
+                            data-bs-dismiss="modal">
+
+                    </button>
+
+                </div>
+
+                <div class="modal-body">
+
+                    <form id="formEditar">
+
+                        <input type="hidden"
+                               id="productoIdEditar">
+
+                        <!-- NOMBRE -->
+
+                        <div class="mb-3">
+
+                            <label class="form-label">
+
+                                Nombre
+
+                            </label>
+
+                            <input type="text"
+                                   class="form-control"
+                                   id="enombre"
+                                   required>
+
+                        </div>
+
+                        <!-- DESCRIPCION -->
+
+                        <div class="mb-3">
+
+                            <label class="form-label">
+
+                                Descripción
+
+                            </label>
+
+                            <textarea class="form-control"
+                                      id="edescripcion"
+                                      required>
+                            </textarea>
+
+                        </div>
+
+                        <!-- PRECIO -->
+
+                        <div class="mb-3">
+
+                            <label class="form-label">
+
+                                Precio
+
+                            </label>
+
+                            <input type="number"
+                                   step="0.01"
+                                   class="form-control"
+                                   id="eprecio"
+                                   required>
+
+                        </div>
+
+                        <!-- STOCK -->
+
+                        <div class="mb-3">
+
+                            <label class="form-label">
+
+                                Stock
+
+                            </label>
+
+                            <input type="number"
+                                   class="form-control"
+                                   id="estock"
+                                   required>
+
+                        </div>
+
+                        <!-- ACTIVO -->
+
+                        <div class="mb-3">
+
+                            <label class="form-label">
+
+                                Estado
+
+                            </label>
+
+                            <select class="form-control"
+                                    id="eactivo">
+
+                                <option value="true">
+                                    Activo
+                                </option>
+
+                                <option value="false">
+                                    Inactivo
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+                <div class="modal-footer">
+
+                    <button type="button"
+                            class="btn btn-danger"
+                            data-bs-dismiss="modal">
+
+                        Cancelar
+
+                    </button>
+
+                    <button type="button"
+                            class="btn btn-success"
+                            onclick="editarProducto()">
+
+                        Guardar
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <script src="assets/js/appSistema.js"></script>
+
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+
+    <script src="assets/js/sweetalert2.all.min.js"></script>
+
+</body>
+</html>
+```
